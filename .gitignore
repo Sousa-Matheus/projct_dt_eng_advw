@@ -1,0 +1,4 @@
+.env
+./opt/airflow/logs/
+./opt/dbt/logs/
+**/logs/

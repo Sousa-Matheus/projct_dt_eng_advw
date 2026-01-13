@@ -1,0 +1,11 @@
+dt_eng_proj:
+  target: dev
+  outputs:
+    dev:
+      type: databricks
+      host: "{{ env_var('DATABRICKS_HOST') }}"
+      http_path: "/sql/1.0/warehouses/6aafc2aea4d091fc"
+      token: "{{ env_var('DATABRICKS_TOKEN') }}"
+      catalog: AdventureWorksLT
+      schema: SalesLT_Bronze
+      threads: 1
