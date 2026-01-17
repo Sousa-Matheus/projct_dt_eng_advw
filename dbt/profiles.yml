@@ -6,6 +6,6 @@ dt_eng_proj:
       http_path: /sql/1.0/warehouses/6aafc2aea4d091fc
       schema: saleslt_gold
       threads: 1
-      token: dapie4035641a57e505f14fecd8e96149845
+      token: "{{ env_var('DATABRICKS_TOKEN') }}"
       type: databricks
   target: dev
