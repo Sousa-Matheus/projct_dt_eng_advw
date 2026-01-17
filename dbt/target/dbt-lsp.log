@@ -1,0 +1,38 @@
+==================== 2026-01-17T22:16:20.461284Z | b82e486c-18ec-4f78-8bbe-267542808b0b ====================
+22:16:20.463764 [info ]: Starting dbt LSP server
+22:16:20.464195 [info ]: Connecting to LSP client on port 8000
+22:16:20.464924 [info ]: Successfully connected to LSP client
+22:16:20.464952 [info ]: Creating LSP service...
+22:16:17.022731 [info ]: Creating LSP server...
+22:16:17.022774 [info ]: Starting LSP server...
+22:16:17.143849 [info ]: Started loading project
+22:16:17.159664 [info ]: Loading profiles.yml
+22:16:20.766002 [info ]: Started parsing
+22:16:20.814884 [info ]: Finished loading project [  3.67s]
+22:16:20.841580 [info ]: Finished parsing [  0.08s]
+22:16:20.844058 [info ]: Cached model count updated: 1 models (estimate)
+22:16:20.844106 [info ]: Cached model count updated: 1 models (accurate)
+22:16:20.846158 [info ]: Started scheduling
+22:16:20.849889 [info ]: Finished scheduling [  0.00s]
+22:16:21.201291 [info ]: Started building task graph
+22:16:21.210392 [info ]: Finished building task graph [  0.01s]
+22:16:21.215348 [info ]: Started rendering (1 nodes)
+22:16:21.215974 [info ]: Started model saleslt_gold.sum_sales
+22:16:21.216352 [debug]: Started rendering model saleslt_gold.sum_sales
+22:16:21.225503 [debug]: Finished rendering [  0.01s] model saleslt_gold.sum_sales [success]
+22:16:21.225558 [info ]: Finished rendering [  0.01s] (1 nodes, 0 skipped, 0 errors)
+22:16:21.225901 [info ]: Started analyzing (1 nodes)
+22:16:21.225928 [debug]: Started analyzing model saleslt_gold.sum_sales
+22:16:21.251219 [info ]:     Failed [  0.03s] model saleslt_gold.sum_sales (view)
+22:16:21.251292 [debug]: Finished analyzing [  0.03s] model saleslt_gold.sum_sales [error]
+22:16:21.251304 [info ]: Finished analyzing [  0.03s] (1 nodes, 0 skipped, 1 errors)
+22:16:21.252844 [error]: dbt0101: no viable alternative at input 'WITH CUSTOMERSORDERS AS (
+    SELECT
+        C.CUSTOMERID,
+        C.FIRSTNAME,
+        C.LASTNAME,
+        C.COMAPNYNAME,
+)'
+  --> models/stage/sum_sales.sql:7:2 (target/compiled/models/stage/sum_sales.sql:7:2)
+22:16:21.264158 [info ]: Cached model count updated: 1 models (accurate)
+22:16:21.316701 [info ]: Loading profiles.yml

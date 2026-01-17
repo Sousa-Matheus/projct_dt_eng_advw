@@ -1,13 +1,12 @@
 name: 'dt_eng_proj'
 version: '1.0.0'
 
-profiles: 'dt_eng_proj'
+profile: 'dt_eng_proj'
 
 model-paths: ['models']
 macro-paths: ['macros']
 snapshot-paths: ['snapshots']
 test-paths: ['tests']
-doc-paths: ['docs']
 
 models:
   dt_eng_proj:

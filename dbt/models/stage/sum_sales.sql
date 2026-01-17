@@ -1,0 +1,7 @@
+WITH CUSTOMERSORDERS AS (
+    SELECT
+        C.CUSTOMERID,
+        C.FIRSTNAME,
+        C.LASTNAME,
+        C.COMAPNYNAME,
+)
