@@ -3,3 +3,4 @@
 ./opt/dbt/logs/
 **/logs/
 **/__pycache__/
+profiles.yml
