@@ -2,6 +2,15 @@ dt_eng_proj:
   target: dev
   outputs:
     dev:
+<<<<<<< HEAD
+=======
+      catalog: adventureworkslt
+      host: dbc-36e1263d-15a2.cloud.databricks.com
+      http_path: /sql/1.0/warehouses/6aafc2aea4d091fc
+      schema: saleslt_gold
+      threads: 1
+      token: "{{ env_var('DATABRICKS_TOKEN') }}"
+>>>>>>> 2056ac9 (Alterações de 170126 dockerfile, docker-compose e configuração dbt)
       type: databricks
       host: "{{ env_var('DATABRICKS_HOST') }}"
       http_path: "/sql/1.0/warehouses/6aafc2aea4d091fc"
