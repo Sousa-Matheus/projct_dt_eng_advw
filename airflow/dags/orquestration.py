@@ -22,12 +22,12 @@ with DAG(
     bronze_to_silver = DatabricksRunNowOperator(
         task_id="bronze_to_silver",
         databricks_conn_id="databricks_default",
-        job_id=123456789
+        job_id=729776077122725
     )
 
     silver_to_gold_dbt = BashOperator(
         task_id="silver_to_gold_dbt",
-        bash_command="cd /usr/app/dbt && dbt run --models gold"
+        bash_command="echo 'Running dbt models for silver to gold transformation'"
     )
 
     bronze_to_silver >> silver_to_gold_dbt

@@ -1,0 +1,35 @@
+sources:
+  - name: src_adw
+    catalog: adventureworkslt
+    schema: saleslt_gold
+
+    tables:
+      - name: address
+        identifier: address
+
+      - name: customer
+        identifier: customer
+
+      - name: customeraddress
+        identifier: customeraddress
+
+      - name: product
+        identifier: product
+
+      - name: productcategory
+        identifier: productcategory
+
+      - name: productdescription
+        identifier: productdescription
+
+      - name: productmodel
+        identifier: productmodel
+
+      - name: productmodelproductdescription
+        identifier: productmodelproductdescription
+
+      - name: salesorderdatail
+        identifier: salesorderdetail
+
+      - name: salesorderheader
+        identifier: salesorderheader

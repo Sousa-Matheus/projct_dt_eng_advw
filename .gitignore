@@ -3,8 +3,3 @@ profiles.yml
 
 # Logs
 **/logs/
-*.log
-
-# Python
-**/__pycache__/
-profiles.yml

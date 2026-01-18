@@ -1,1 +1,1 @@
-apache-airflow-providers-databricks
+apache-airflow-providers-databricks==6.8.0
