@@ -7,8 +7,4 @@ profiles.yml
 
 # Python
 **/__pycache__/
-*.pyc
-
-# dbt
-dbt/target/
-
+profiles.yml
