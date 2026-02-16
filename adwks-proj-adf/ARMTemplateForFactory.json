@@ -1,0 +1,313 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adwks-proj-adf"
+		},
+		"ls_sql_server_onpremisse_adwks_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_sql_server_onpremisse_adwks'"
+		},
+		"ls_storage_account_adwks_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_storage_account_adwks'"
+		},
+		"ls_sql_server_onpremisse_adwks_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "DESKTOP-DBJQ40I\\MSSQLSERVER22"
+		},
+		"ls_sql_server_onpremisse_adwks_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "AdventureWorksLT2019"
+		},
+		"ls_sql_server_onpremisse_adwks_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "adf_user"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_sql_server_to parquet_adwks')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Lookup_tables_info_adwks",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"sqlReaderQuery": "SELECT \n\tTABLE_CATALOG,\n\tTABLE_SCHEMA,\n\tTABLE_NAME\nFROM INFORMATION_SCHEMA.TABLES\nWHERE TABLE_SCHEMA = 'SalesLT';",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "ds_sql_server_adwks",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "ForEach_adwks",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Lookup_tables_info_adwks",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Lookup_tables_info_adwks').output.value",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "Copy_data_from_sql_to_parquet_adwks",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "SqlServerSource",
+											"sqlReaderQuery": {
+												"value": "SELECT *\nFROM @{item().table_schema}.@{item().table_name}",
+												"type": "Expression"
+											},
+											"queryTimeout": "02:00:00",
+											"partitionOption": "None"
+										},
+										"sink": {
+											"type": "ParquetSink",
+											"storeSettings": {
+												"type": "AzureBlobStorageWriteSettings",
+												"copyBehavior": "FlattenHierarchy"
+											},
+											"formatSettings": {
+												"type": "ParquetWriteSettings"
+											}
+										},
+										"enableStaging": false,
+										"translator": {
+											"type": "TabularTranslator",
+											"typeConversion": true,
+											"typeConversionSettings": {
+												"allowDataTruncation": true,
+												"treatBooleanAsNumber": false
+											}
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "ds_sql_server_adwks",
+											"type": "DatasetReference",
+											"parameters": {}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "ds_storage_account_parquet_adwks",
+											"type": "DatasetReference",
+											"parameters": {
+												"table": {
+													"value": "@concat(item().table_schema, '.', item().table_name)\n",
+													"type": "Expression"
+												},
+												"file_name": {
+													"value": "@concat(item().table_name, '_', 'load_date=', formatDateTime( utcNow(), 'yyyyMMdd'), '.parquet')",
+													"type": "Expression"
+												}
+											}
+										}
+									]
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_sql_server_adwks')]",
+				"[concat(variables('factoryId'), '/datasets/ds_storage_account_parquet_adwks')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_sql_server_adwks')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_sql_server_onpremisse_adwks",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [],
+				"typeProperties": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_sql_server_onpremisse_adwks')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_storage_account_parquet_adwks')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_storage_account_adwks",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"table": {
+						"type": "string"
+					},
+					"file_name": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().file_name",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().table",
+							"type": "Expression"
+						},
+						"container": "saleslt-sink"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": [
+					{
+						"name": "AddressID",
+						"type": "INT32"
+					},
+					{
+						"name": "AddressLine1",
+						"type": "UTF8"
+					},
+					{
+						"name": "AddressLine2",
+						"type": "UTF8"
+					},
+					{
+						"name": "City",
+						"type": "UTF8"
+					},
+					{
+						"name": "StateProvince",
+						"type": "UTF8"
+					},
+					{
+						"name": "CountryRegion",
+						"type": "UTF8"
+					},
+					{
+						"name": "PostalCode",
+						"type": "UTF8"
+					},
+					{
+						"name": "rowguid",
+						"type": "UTF8"
+					},
+					{
+						"name": "ModifiedDate",
+						"type": "INT96"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_storage_account_adwks')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_sql_server_onpremisse_adwks')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"server": "[parameters('ls_sql_server_onpremisse_adwks_properties_typeProperties_server')]",
+					"database": "[parameters('ls_sql_server_onpremisse_adwks_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": true,
+					"authenticationType": "SQL",
+					"userName": "[parameters('ls_sql_server_onpremisse_adwks_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('ls_sql_server_onpremisse_adwks_password')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "integration-Runtime-adwks",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/integration-Runtime-adwks')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_storage_account_adwks')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('ls_storage_account_adwks_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/integration-Runtime-adwks')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		}
+	]
+}

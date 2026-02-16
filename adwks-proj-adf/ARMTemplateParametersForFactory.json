@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adwks-proj-adf"
+		},
+		"ls_sql_server_onpremisse_adwks_password": {
+			"value": ""
+		},
+		"ls_storage_account_adwks_connectionString": {
+			"value": ""
+		},
+		"ls_sql_server_onpremisse_adwks_properties_typeProperties_server": {
+			"value": "DESKTOP-DBJQ40I\\MSSQLSERVER22"
+		},
+		"ls_sql_server_onpremisse_adwks_properties_typeProperties_database": {
+			"value": "AdventureWorksLT2019"
+		},
+		"ls_sql_server_onpremisse_adwks_properties_typeProperties_userName": {
+			"value": "adf_user"
+		}
+	}
+}
