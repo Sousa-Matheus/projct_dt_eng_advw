@@ -1,0 +1,6 @@
+{
+	"name": "integration-Runtime-adwks",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
