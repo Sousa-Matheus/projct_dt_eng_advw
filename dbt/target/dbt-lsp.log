@@ -124,3 +124,30 @@
 22:39:40.249171 [info ]: Loading profiles.yml
 22:39:48.545834 [info ]: Loading profiles.yml
 22:41:55.204808 [info ]: Loading profiles.yml
+==================== 2026-01-18T20:08:03.095697Z | e9c4779d-57be-4ab2-90d1-18ec589f276d ====================
+20:08:03.095742 [info ]: Starting dbt LSP server
+20:08:03.095754 [info ]: Connecting to LSP client on port 8000
+20:08:03.095913 [info ]: Successfully connected to LSP client
+20:08:03.095922 [info ]: Creating LSP service...
+20:08:03.138290 [info ]: Creating LSP server...
+20:08:03.138327 [info ]: Starting LSP server...
+20:08:03.305776 [info ]: Started loading project
+20:08:03.307514 [info ]: Loading profiles.yml
+20:08:03.307768 [error]: dbt1059: Duplicate key `type`. This key overwrites a previous definition of the same key at line 4 column 7. YAML path: `dt_eng_proj.outputs.dev.type`.
+  --> profiles.yml:8:7
+20:08:03.308305 [info ]: Finished loading project [  0.00s]
+==================== 2026-01-24T13:54:45.601382Z | e50253a6-b465-4a27-810b-13a71a528157 ====================
+13:54:45.603028 [info ]: Starting dbt LSP server
+13:54:45.603463 [info ]: Connecting to LSP client on port 8000
+13:54:45.604280 [info ]: Successfully connected to LSP client
+13:54:45.604304 [info ]: Creating LSP service...
+13:54:45.666406 [info ]: Creating LSP server...
+13:54:45.666439 [info ]: Starting LSP server...
+13:54:45.765120 [info ]: Started loading project
+13:54:45.785044 [info ]: Loading profiles.yml
+13:54:45.788671 [error]: dbt1059: Duplicate key `type`. This key overwrites a previous definition of the same key at line 4 column 7. YAML path: `dt_eng_proj.outputs.dev.type`.
+  --> profiles.yml:8:7
+13:54:45.797166 [info ]: Finished loading project [  0.03s]
+13:54:47.183535 [info ]: Loading profiles.yml
+13:54:47.183662 [error]: dbt1059: Duplicate key `type`. This key overwrites a previous definition of the same key at line 4 column 7. YAML path: `dt_eng_proj.outputs.dev.type`.
+  --> profiles.yml:8:7

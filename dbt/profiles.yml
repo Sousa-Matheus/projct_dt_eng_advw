@@ -2,8 +2,9 @@ dt_eng_proj:
   outputs:
     dev:
       type: databricks
+      catalog: "adventureworkslt"
+      schema: "saleslt_gold"
       host: "{{ env_var('DATABRICKS_HOST') }}"
       http_path: "/sql/1.0/warehouses/6aafc2aea4d091fc"
       token: "{{ env_var('DATABRICKS_TOKEN') }}"
-      type: databricks
   target: dev

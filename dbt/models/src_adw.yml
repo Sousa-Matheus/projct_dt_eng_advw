@@ -1,7 +1,7 @@
 sources:
   - name: src_adw
     catalog: adventureworkslt
-    schema: saleslt_gold
+    schema: saleslt_silver
 
     tables:
       - name: address
@@ -10,26 +10,35 @@ sources:
       - name: customer
         identifier: customer
 
-      - name: customeraddress
-        identifier: customeraddress
+      - name: customer_address
+        identifier: customer_address
 
       - name: product
         identifier: product
 
-      - name: productcategory
-        identifier: productcategory
+      - name: product_category
+        identifier: product_category
 
-      - name: productdescription
-        identifier: productdescription
+      - name: product_description
+        identifier: product_description
 
-      - name: productmodel
-        identifier: productmodel
+      - name: product_model
+        identifier: product_model
 
-      - name: productmodelproductdescription
-        identifier: productmodelproductdescription
+      - name: product_model_product_description
+        identifier: product_model_product_description
 
-      - name: salesorderdatail
-        identifier: salesorderdetail
+      - name: sales_order_detail
+        identifier: sales_order_detail
 
-      - name: salesorderheader
-        identifier: salesorderheader
+      - name: sales_order_header
+        identifier: sales_order_header
+
+      - name: vget_all_category
+        identifier: vget_all_category
+
+      - name: vproduct_and_description
+        identifier: vproduct_and_description
+
+      - name: vproduct_model_catalog_description
+        identifier: vproduct_model_catalog_description
