@@ -151,3 +151,73 @@
 13:54:47.183535 [info ]: Loading profiles.yml
 13:54:47.183662 [error]: dbt1059: Duplicate key `type`. This key overwrites a previous definition of the same key at line 4 column 7. YAML path: `dt_eng_proj.outputs.dev.type`.
   --> profiles.yml:8:7
+==================== 2026-02-16T16:04:28.629636Z | 0e01ccb1-3925-4cca-bbe3-9f205a10514f ====================
+16:04:28.631019 [info ]: Starting dbt LSP server
+16:04:28.631050 [info ]: Connecting to LSP client on port 8000
+16:04:28.631814 [info ]: Successfully connected to LSP client
+16:04:28.631831 [info ]: Creating LSP service...
+16:04:28.690122 [info ]: Creating LSP server...
+16:04:28.690159 [info ]: Starting LSP server...
+16:04:28.791483 [info ]: Started loading project
+16:04:28.807734 [info ]: Loading profiles.yml
+16:04:28.818186 [info ]: Finished loading project [  0.03s]
+16:30:29.678170 [info ]: Loading profiles.yml
+16:30:30.108470 [info ]: Loading profiles.yml
+16:31:23.916703 [info ]: Loading profiles.yml
+16:31:50.991565 [info ]: Loading profiles.yml
+16:31:54.901449 [info ]: Loading profiles.yml
+16:33:27.933583 [info ]: Loading profiles.yml
+16:33:30.874986 [info ]: Loading profiles.yml
+16:43:55.538652 [info ]: Loading profiles.yml
+16:43:55.967925 [info ]: Loading profiles.yml
+16:44:04.437776 [info ]: Loading profiles.yml
+16:44:15.438044 [info ]: Loading profiles.yml
+16:44:17.093552 [info ]: Loading profiles.yml
+16:44:21.238383 [info ]: Loading profiles.yml
+16:46:44.241236 [info ]: Loading profiles.yml
+16:47:39.314088 [info ]: Loading profiles.yml
+16:47:40.770010 [info ]: Loading profiles.yml
+16:47:45.249014 [info ]: Loading profiles.yml
+16:50:09.584527 [info ]: Loading profiles.yml
+16:50:26.491597 [info ]: Loading profiles.yml
+16:50:27.918921 [info ]: Loading profiles.yml
+16:50:31.606993 [info ]: Loading profiles.yml
+16:54:21.666358 [info ]: Loading profiles.yml
+16:54:31.904197 [info ]: Loading profiles.yml
+16:54:33.640500 [info ]: Loading profiles.yml
+16:54:37.502630 [info ]: Loading profiles.yml
+16:58:00.173535 [info ]: Loading profiles.yml
+16:58:10.456670 [info ]: Loading profiles.yml
+16:58:11.834070 [info ]: Loading profiles.yml
+16:58:15.654411 [info ]: Loading profiles.yml
+16:59:23.380441 [info ]: Loading profiles.yml
+16:59:24.675713 [info ]: Loading profiles.yml
+16:59:28.395605 [info ]: Loading profiles.yml
+17:05:07.710659 [info ]: Loading profiles.yml
+17:06:14.816505 [info ]: Loading profiles.yml
+17:07:22.186582 [info ]: Loading profiles.yml
+17:09:33.262811 [info ]: Loading profiles.yml
+17:30:58.519394 [info ]: Loading profiles.yml
+17:33:10.562826 [info ]: Loading profiles.yml
+17:37:16.209424 [info ]: Loading profiles.yml
+17:38:23.948820 [info ]: Loading profiles.yml
+17:40:33.930707 [info ]: Loading profiles.yml
+17:42:45.686600 [info ]: Loading profiles.yml
+18:10:53.490454 [info ]: Loading profiles.yml
+18:20:27.027040 [info ]: Loading profiles.yml
+18:22:38.434285 [info ]: Loading profiles.yml
+18:24:50.599717 [info ]: Loading profiles.yml
+18:28:49.486787 [info ]: Loading profiles.yml
+18:28:52.362052 [info ]: Loading profiles.yml
+18:29:04.471249 [info ]: Loading profiles.yml
+18:36:13.845661 [info ]: Loading profiles.yml
+18:37:53.987647 [info ]: Loading profiles.yml
+18:39:01.973135 [info ]: Loading profiles.yml
+18:40:10.075611 [info ]: Loading profiles.yml
+18:40:17.420694 [info ]: Loading profiles.yml
+18:40:18.806366 [info ]: Loading profiles.yml
+18:40:25.356325 [info ]: Loading profiles.yml
+18:51:58.676918 [info ]: Loading profiles.yml
+18:52:25.308714 [info ]: Loading profiles.yml
+18:52:30.247705 [info ]: Loading profiles.yml
+18:52:44.576924 [info ]: Loading profiles.yml
